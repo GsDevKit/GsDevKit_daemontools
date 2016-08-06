@@ -1,0 +1,8 @@
+#!/bin/bash
+source /opt/gemstone/product/seaside/defSeaside
+$GEMSTONE/bin/waitstone $GEMSTONE_NAME 2
+# Create the stats directory if it's not there
+mkdir -p /home/DAEMONTOOLS_USER/stats/60-second
+chown -R DAEMONTOOLS_USER:DAEMONTOOLS_USER /home/DAEMONTOOLS_USER/stats
+cd /home/DAEMONTOOLS_USER/stats/60-second
+exec setuidgid DAEMONTOOLS_USER $GEMSTONE/bin/statmonitor $GEMSTONE_NAME -rAzq -h 24 -i 60
