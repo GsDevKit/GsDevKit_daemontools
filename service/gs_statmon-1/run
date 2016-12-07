@@ -1,5 +1,11 @@
 #!/bin/bash
-source /opt/gemstone/product/seaside/defSeaside
+export GS_HOME=/opt/git/GsDevKit_home/
+source ${GS_HOME}/bin/defGsDevKit.env
+stonePath=$GS_SERVER_STONES/YOUR_STONE_NAME
+pushd $stonePath $stonePath >& /dev/null
+  source $stonePath/stone.env
+popd >& /dev/null
+
 $GEMSTONE/bin/waitstone $GEMSTONE_NAME 2
 # Create the stats directory if it's not there
 mkdir -p /home/DAEMONTOOLS_USER/stats/1-second
